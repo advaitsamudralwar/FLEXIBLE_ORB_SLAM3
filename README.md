@@ -74,7 +74,7 @@ Required to calculate the alignment of the trajectory with the ground truth. **R
 
 * (deb) `sudo apt install libpython2.7-dev`
 
-# ROS Approach
+# 3. ROS Approach
 
 We provide some examples to process input of a monocular, monocular-inertial, stereo, stereo-inertial or RGB-D camera using ROS. Building these examples is optional. 
 **
@@ -165,7 +165,7 @@ Python 2.7 is required to calculate the alignment of the trajectory with the gro
 sudo apt install libpython2.7-dev
 ```
 
-## ORB SLAM3 Compilation Guide
+# 4. ORB SLAM3 Compilation Guide
 
 Clone the repository:
 ```
@@ -238,11 +238,11 @@ The following instructions will guide you through the process of compiling the O
    make -j4
    ```
 
-# Issues Faced During Compilation
+### Issues Faced During Compilation
 
 If you encounter issues while compiling the ORB SLAM3 project, you might come across the following errors along with their respective solutions:
 
-## 1. Error: `fatal error: boost/serialization/serialization.hpp: No such file or directory`
+#### 1. Error: `fatal error: boost/serialization/serialization.hpp: No such file or directory`
 
 **Solution:**
 You can resolve this issue by installing the required Boost library. Open a terminal and run the following command:
@@ -250,7 +250,7 @@ You can resolve this issue by installing the required Boost library. Open a term
 sudo apt install libboost-filesystem-dev
 ```
 
-## 2. Error: `fatal error: openssl/md5.h: No such file or directory`
+#### 2. Error: `fatal error: openssl/md5.h: No such file or directory`
 
 **Solution:**
 To fix this error, you need to install the OpenSSL development package. Run the following command in your terminal:
@@ -258,7 +258,7 @@ To fix this error, you need to install the OpenSSL development package. Run the 
 sudo apt-get install libssl-dev
 ```
 
-## 3. Error: `/usr/bin/ld: cannot find -lboost_serialization...`
+#### 3. Error: `/usr/bin/ld: cannot find -lboost_serialization...`
 
 **Solution:**
 You can resolve this issue by installing the complete Boost library. Execute the following command in your terminal:
@@ -266,7 +266,7 @@ You can resolve this issue by installing the complete Boost library. Execute the
 sudo apt install libboost-all-dev
 ```
 
-## 4. Error: `ORB SLAM3 Compilation Error - Unable to find OpenCV 4.4...`
+#### 4. Error: `ORB SLAM3 Compilation Error - Unable to find OpenCV 4.4...`
 
 **Solution:**
 This error can be fixed by modifying the `CMakeLists.txt` file under the ORB_SLAM3 directory. Locate the line `find_package(OpenCV 4.4)` and replace it with:
@@ -277,7 +277,7 @@ if(NOT OpenCV_FOUND)
 endif()
 ```
 
-## 5. Issue: OpenCV Installation Error - "ICV: Downloading ippicv linux 20151201.tgz..."
+#### 5. Issue: OpenCV Installation Error - "ICV: Downloading ippicv linux 20151201.tgz..."
 
 **Solution:**
 You need to manually download the ippicv_linux_20151201.tgz package from [this link](https://pan.baidu.com/s/1In12KXpDK-EwVOAXv7iWVA). After downloading, follow these steps:
@@ -313,7 +313,7 @@ You need to manually download the ippicv_linux_20151201.tgz package from [this l
    sudo updatedb
    ```
 
-## 6. Error: ROS Environment Variable Issue and Directory Change
+#### 6. Error: ROS Environment Variable Issue and Directory Change
 
 **Solution:**
 Ensure that you update your `~/.bashrc` file with the correct environment variable path for ROS and adjust the directory changes as follows:
@@ -326,7 +326,7 @@ cmake .. -DROS_BUILD_TYPE=Release
 make -j
 ```
 
-## 7. Error: ROS Build Error - Incorrect ROS PACKAGE PATH
+#### 7. Error: ROS Build Error - Incorrect ROS PACKAGE PATH
 
 **Solution:**
 Check your ROS PACKAGE PATH in your `~/.bashrc` file and make sure it's correctly set:
@@ -334,7 +334,7 @@ Check your ROS PACKAGE PATH in your `~/.bashrc` file and make sure it's correctl
 export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:/path/to/ORB_SLAM3/Examples_old/ROS
 ```
 
-## 8. Error: `CMakeFiles/MonoAR.dir/build.make:198: recipe for target...`
+#### 8. Error: `CMakeFiles/MonoAR.dir/build.make:198: recipe for target...`
 
 **Solution:**
 Install the required Boost library by executing the following command:
@@ -342,12 +342,12 @@ Install the required Boost library by executing the following command:
 sudo apt install libboost-filesystem-dev
 ```
 
-## 9. Error: `fatal error: sophus/se3.h: No such file or directory`
+#### 9. Error: `fatal error: sophus/se3.h: No such file or directory`
 
 **Solution:**
 In the `CMakeLists.txt` file located in `ORB_SLAM3/Examples_old/ROS/ORB_SLAM3`, add `${PROJECT_SOURCE_DIR}/../../../Thirdparty/Sophus` to the `include_directories` section.
 
-## 10. Error with `cv::Mat Tcw = mpSLAM->TrackMonocular(...)`
+#### 10. Error with `cv::Mat Tcw = mpSLAM->TrackMonocular(...)`
 
 **Solution:**
 Modify the line to handle the transformation from Sophus to OpenCV matrices:
@@ -358,7 +358,7 @@ Eigen::Matrix4f Tcw_Matrix = Tcw_SE3f.matrix();
 cv::eigen2cv(Tcw_Matrix, Tcw);
 ```
 
-## 11. Error with `vPoints.push_back(pMP->GetWorldPos());`
+#### 11. Error with `vPoints.push_back(pMP->GetWorldPos());`
 
 **Solution:**
 Replace the line with:
@@ -380,7 +380,7 @@ cv::eigen2cv(pMP->GetWorldPos(), Xw);
 
 For further assistance and community discussions, refer to the [ORB SLAM3 GitHub repository](https://github.com/UZ-SLAMLab/ORB_SLAM3). Make sure to follow the instructions carefully to successfully compile and run the project.
 
-# 4. Running ORB-SLAM3 with ROSBAG
+# 5. Running ORB-SLAM3 with ROSBAG
 
 To run ORB SLAM 3 on ROS-Melodic, follow these steps. Open three terminals and execute the commands as shown:
 
@@ -407,7 +407,7 @@ In Terminal 3, the `rosbag play` command is used to play a ROS bag file containi
 
 With these steps, you can effectively run ORB SLAM 3 on ROS-Melodic using stereo camera input. Remember to replace file paths and topic names as needed for your specific setup.
 
-# 5. Analyis
+# 6. Observation and Analysis
 # Visualizing ORB SLAM 3 Outputs
 
 ## ROS Graph Visualization
@@ -446,5 +446,7 @@ The velocity plot illustrates the changes in camera velocity during the SLAM pro
 
 For a comprehensive analysis of ORB SLAM 3 outputs and performance, refer to the provided graphs and visualizations. These visual insights offer valuable information about the system's behavior and efficiency.
 
-# 9. Calibration
-You can find a tutorial for visual-inertial calibration and a detailed description of the contents of valid configuration files at  `Calibration_Tutorial.pdf`
+# 7. REFERENCES
+
+GitHub Repository: [https://github.com/Kuzuri15/ORB_SLAM3_Project](https://github.com/Kuzuri15/ORB_SLAM3_Project)
+
